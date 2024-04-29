@@ -1,0 +1,101 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+<link rel="icon" href="{% static 'seapp\img\favicon.png' %}" style="avatar">
+
+{% block js %}
+    
+
+{% endblock %}
+    
+ 
+{% block container %}
+
+  <!--<div class="card text-center">
+        <h5 class="card-header">Servicio Empleos </h5>
+        <div class="card-body">
+          <p class="card-text">El sistio web indicado para que las empresas te encuentren.</p>
+          <a href="{% url 'login'%}" class="btn btn-primary">Ingresar</a>
+        </div>
+  </div>-->
+
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead " style=" height: 100%; min-height: 500px; background-size: cover; 
+  background-position: center; background-repeat: no-repeat;" >
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="fw-light" style="color:#24527A; font-style:italic;" href="{% url 'index.html' %}" >Servicio de Empleos</h1>
+        <p class="lead" style="color:#24527A;">El sitio web para que las empresas conozcan tu perfil profesional</p>
+      </div>
+      <!-- Page Content -->
+      {% if user.is_authenticated %}
+        {% for group in request.user.groups.all %}
+          {% if group.name == 'Empresas' %}
+            <h6 class="fw-light">Bienvenido {{ user.first_name }}! Como empresa puedes ver candidatos que se ajusten a tus necesidades laborales.</h6>
+          
+          {% elif group.name == 'Candidatos' %}
+
+            <h6 class="fw-light">Hola {{user.first_name}} {{user.last_name}}! aquí podrás completar tu perfil para que las empresas puedan encontrarte.</h6>
+
+          {% endif %}
+        {% endfor %}
+      {% else %}
+
+      <div class="container">
+        <br><br><br>
+        <h2 class="fw-light"><a href="{% url 'login'%}" class="btn btn-primary rounded-0 py-2 px-4"  style="background: #24527A; border: none;">Ingresar</a></h2>
+        {% endif %}
+      
+      </div>  
+    </div>
+  </div>
+
+</header>
+
+<!-- Page Content 
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-light"><a href="{% url 'login'%}" class="btn btn-primary">Ingresar</a></h2>
+    <p>AGREGAR UNA DESCRIPCIÓN</p>
+  </div>
+</section>-->
+
+  
+ <!-- ======= Footer ======= -->
+ <section class="p-3 pt-0 expand-lg fotter bg-light shadow fixed-bottom" id="fotter" >
+  <div class="row d-flex align-items-center container-fluid">
+    <!-- Grid column -->
+    <div class="col-md-7 col-lg-8 text-center text-md-start">
+      <!-- Copyright -->
+      <div class="p-3" style="font-size: 10px;">
+        <br>
+        © 2020 Copyright:
+        <a class="text-black" style="font-size: 10px; display: inline-block; outline: none; color: black; text-decoration:none"  href="https://berisvilmauricio.ar/" target="_blank">
+          Berisvil Mauricio | v1.1.1 <br>
+          </a>
+      </div>
+    <!-- Copyright -->
+    </div>
+
+    <!-- Grid column -->
+    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end" style="font-size: 10px;">
+      <br>
+      Developed by: <br>
+      <i class="fa-brands align-items-center" style="font-size: 11px;">
+        <img src="{% static 'seapp/img/icons/email-48.png'%}" style="height: 15px; width: 15px; " alt="">
+         | berisvilmauricio@gmail.com</i> 
+    </div>
+
+    </div>
+    <!-- Grid column -->
+  </div>
+</section>
+<!-- Section: Copyright ->
+
+
+{% endblock %}
+
+ 
+  
+    

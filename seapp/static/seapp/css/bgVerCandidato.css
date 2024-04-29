@@ -1,0 +1,12 @@
+body{
+  padding: 1%;
+  margin: 1%;
+  background-image: url('../img/logotrans.jpeg') !important;
+  /*background-color: #24527A;*/
+  position:static;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: auto 14/9;
+  
+}
+

@@ -1,0 +1,17 @@
+html, body
+{
+  padding: 0;
+  margin: 0;
+    height: 100%;
+}
+
+.backgroud {
+    --bs-bg-opacity: 1;
+    background-image: url('../img/logotrans.jpeg') !important;
+    /*background-color: #24527A;*/
+    position:static;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: auto 14/9;
+
+  }

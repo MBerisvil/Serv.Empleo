@@ -1,0 +1,19 @@
+{% for persona in page_obj  %}
+    {{ persona.full_name }} 
+{% endfor %}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <strong>{% if page_obj.has_previous %}
+            <a   style="font-size: 15px; display: inline-block; outline: none; color: #24527A; text-decoration:none" href="?page{{page_obj.previous_page_number }}"> < </a>
+        {% endif %}
+
+        <span   style="font-size: 15px; display: inline-block; outline: none; text-decoration:none">
+            {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" style="font-size: 15px; display: inline-block; outline: none; color: #24527A; text-decoration:none">> </a>
+        {% endif %}</strong>
+    </ul>
+  </nav>

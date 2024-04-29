@@ -1,0 +1,37 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+<link rel="icon" href="{% static 'seapp\img\favicon.png' %}" style="avatar">
+
+{% block js %}
+    
+
+{% endblock %}
+    
+ 
+{% block container %}
+
+<td align="center" class="esd-block-image" style="font-size: 0px;">
+    <a target="_blank">
+        <img class="adapt-img" src="{% static 'seapp/img/icons/logo_transparent.png'%}" alt style="display: block;" width="185">
+    </a>
+</td>
+<td align="center" class="esd-block-text">
+    <p style="line-height: 150%; font-size: 40px; color: #24527a;">Servicio de Empleo</p>
+    <p style="line-height: 150%; font-size: 29px; color: #24527a;">Bienvenido!!</p>
+</td>
+<td align="left" class="esd-block-text">
+    <p>Hola {{user.first_name}} {{user.last_name}}</p>
+    <p><br></p>
+    <p>Nos pone contento darte la bienvenida el sitio web donde podes dejarnos tus datos para que las empresas 
+        puedan contactarse con vos para proponerte un nuevo empleo, donde puedas desarrollarte profesionalmente 
+        y personalmente junto a un nuevo equipo de trabajo.&nbsp;</p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+    <p><br></p>
+</td>
+
+{% endblock %}
+
+

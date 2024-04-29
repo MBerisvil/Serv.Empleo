@@ -1,0 +1,111 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+{% load crispy_forms_tags %}
+<br><br><br><br><br>
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        
+        <div class="col-md-5 border-right">
+            <div class="p-5 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Información Adicional</h4>
+                </div>
+                <form action="" class="informacionadicional" method="post">
+
+                    <!--Token de seguridad-->
+                    {% csrf_token %}
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Capacitación</label>
+                            <input type="text" class="textinput form-control" name="curso" maxlength="100" required id="id_curso" placeholder="Diploma otorgado">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Nombre del instituto</label>
+                            <input type="text" class="textinput form-control" name="instituto_cursado" maxlength="100" required id="id_instituto_cursado" placeholder="Instituto">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Estudiante</label>
+                            <input type="text" class="textinput form-control" name="persona_info_adicional" maxlength="20" required id="id_persona_info_adicional" disabled placeholder="{{user.last_name}}, {{user.first_name}}"><br>
+                        </div>
+                        <br>
+                    </div>
+                    <div class='d-flex justify-content-end'>
+                        <button type="submit" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+                        &nbsp;
+                        <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                    </div> 
+            </div>
+        </div> 
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="mt-6 text-center">
+                    <br><br>
+                    <div class="text-center">
+                        <img src="{% static 'seapp\img\certificado1.png' %}" width="250px"  alt="">
+                    </div><br>
+                </div>
+            </div>
+        </div>
+    </form>
+<!--
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Capacitación</label>
+                        <input type="text" class="textinput form-control" name="curso" maxlength="100" required id="id_curso" placeholder="Diploma otorgado">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Instituto cursado</label>
+                        <input type="text" class="textinput form-control" name="instituto_cursado" maxlength="100" required id="id_instituto_cursado" placeholder="Nombre del instituto">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Estudiante</label>
+                        <input type="text" class="textinput form-control" name="persona_info_adicional" maxlength="20" required id="id_persona_info_adicional" placeholder="{{Persona.nombre}}"><br>
+                    </div>
+                    <br>
+                </div>
+                <div class='d-flex justify-content-end'>
+                    <button type="submit" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+                    &nbsp;
+                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                </div>  
+            </div>
+
+            <div class="row">
+    <div class='col-12 col-md-6 offset-md-3 overflow-auto'>
+        <div class="card">
+            <div class="card-body">
+                <h2>Información Adicional</h2>
+                <form action="" class="informacionadicional" method="post">
+
+                    <!--Token de seguridad
+                    {% csrf_token %}
+
+                    {{ form | crispy }}
+
+                    <br>
+                    <div class='d-flex justify-content-end'>
+                        <button type="submit" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+                        &nbsp;
+                        <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                    </div>  
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+-->
+        </div>
+
+<!--Imprimo Mensaje-->
+{{ message }}
+<table id="tablainformacionadicional"></table>
+
+
+{% endblock %}

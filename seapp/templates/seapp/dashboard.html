@@ -1,0 +1,131 @@
+{% extends 'seapp/index.html' %}
+
+{% load static %}
+<link rel="icon" href="{% static 'seapp\img\favicon.png' %}" style="avatar">
+
+{% block container %}
+<br>
+<br>
+<br>
+<div class="row container-fluid ">
+    <div class="card-header-center"> 
+            <div class="card-body">
+                <br><br>
+                <div class="card hover shadow-lg border-0">
+                    <div class="card-header" style="background:#24527A;">
+                        <h3 style="color:#ffff";>Listado de usuarios</h3> 
+                    </div>
+                    <div class="card-body text-left">
+                        <nav class="navbar" style="background: transparent;">
+                            <div class="container-fluid">
+                              <a class="navbar-brand"></a>
+                              <form class="d-flex" role="search" method="post">
+                                {% csrf_token %}
+                                <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search"  name="buscar" value="{{ request.POST.buscar }}">
+                                <button class="btn btn-primary rounded-0 py-2 px-4" type="submit" style="background: #24527A; border: none;">Buscar</button>
+                              </form>
+                            </div>
+                          </nav>
+                          <br>
+                        <table class="table table-responsive text-left">
+                            <thead class="thead-dark " style="background: #5DACBD; color:#fff; font-size: 14px;" >
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th class="text-center">Perfil</th>
+                                    <th class="text-center">Fecha registro</th>
+                                    <th class="text-center">Activo</th>
+                                    <th class="text-center">Acción</th>
+                                </tr>
+                            </thead>
+                
+                        {% for u in User %} 
+                    
+                            <tr>
+                                
+                            </tr>
+                            <tr>
+                                <td>{{u.username }}</td>
+                                <td>{{u.first_name | title }}</td>
+                                <td>{{u.last_name | title }}</td>
+                                
+                                {% if u.is_enterprise %}
+                                    <td class="text-center" style="font-weight: bold; color:#A11111;">Empresa</td>
+                                
+                               {% elif u.is_staff %}
+                                    <td class="text-center" style="font-weight: bold; color:#13962D;">Admin</td>
+                                    
+                                {% else %}
+                                    <td class="text-center" style="font-weight: bold; color:#13962D;">Candidato</td>
+
+                                {% endif %}
+
+                                <td class="text-center">{{u.date_joined}}</td>
+                                
+                                {% if u.is_active %}
+                                    <td class="text-center" style="font-weight: bold;">Activo</td>
+                                    {% else %}
+                                    <td class="text-center" style="font-weight: bold;">Inactivo</td>
+                                {% endif %}
+                                    
+                                
+
+                                <td class="text-center">
+                                    <!--<i class="fa-brands align-items-center btn btn-sm" style="font-size: 11px;  border:none;">
+                                        <img src="{% static 'seapp/img/icons/view-48.png'%}" style="height: 20px; width: 20px; " alt=""></i>--> 
+                                    {% for group in request.user.groups.all %}
+                                        {% if group.name == 'Administrador' %}
+                                        
+                                            
+                                            {% if u.is_staff %}
+                                                
+                                            
+                                            {% else %}
+                                                {% if u.is_active %}
+                                                    <a class="fa-brands align-items-center btn btn-sm"  href="{% url 'desactivar_usuario.html' u.id %}" style="font-size: 11px;  border:none;">
+                                                        <img src="{% static 'seapp/img/icons/deshabilirar-48.png'%}" style="height: 20px; width: 20px; " alt=""></a>
+                                                        <a class="fa-brands align-items-center btn btn-sm"  href="{% url 'eliminar_usuario.html' u.id %}" style="font-size: 11px;  border:none;">
+                                                            <img src="{% static 'seapp/img/icons/remove-48.png'%}" style="height: 20px; width: 20px; " alt=""></a>
+                                                {% else %}
+                                                    <a class="fa-brands align-items-center btn btn-sm"  href="{% url 'desactivar_usuario.html' u.id %}" style="font-size: 11px;  border:none;">
+                                                        <img src="{% static 'seapp/img/icons/userMale-48.png'%}" style="height: 20px; width: 20px; " alt=""></a>
+                                                    <a class="fa-brands align-items-center btn btn-sm"  href="{% url 'eliminar_usuario.html' u.id %}" style="font-size: 11px;  border:none;">
+                                                        <img src="{% static 'seapp/img/icons/remove-48.png'%}" style="height: 20px; width: 20px; " alt=""></a>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                        <!--<i class="fa-brands align-items-center btn btn-sm" style="font-size: 11px;  border:none;">
+                                            <img src="{% static 'seapp/img/icons/remove-48.png'%}" style="height: 20px; width: 20px; " alt=""></i>--> 
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
+                    
+                            
+                        </table>
+                        <div class="text-end">
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-body-secondary text-center">
+                        <p style="fonte-size:10px; color:grey;">*Buscar por usuario, nombre, apellido</p>
+                    </div>
+                </div>
+                                
+            </div>
+    </div>
+</div>
+
+    
+<script href="{% static 'seapp/js/bootstrap.min.js"></script>
+<script href="{% static 'seapp/js/jquery.min.js"></script>
+    <!--Imprimo Mensaje-->
+     {{ message }}
+    <table id="persona">
+
+    </table>
+{% endblock  %}

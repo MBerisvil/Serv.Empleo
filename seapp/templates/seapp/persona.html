@@ -1,0 +1,158 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'seapp\css\bootstrap.min.css'%}">
+<link rel="stylesheet" href="{% static 'seapp\css\persona.css'%}">
+
+
+{% block container %}
+
+{% load crispy_forms_tags %}
+<br><br>
+<div class="row container-fluid ">
+    <div class="col-12 col-md-10 offset-md-1"> 
+        <div class="card-body">
+            <br><br><br><br>
+            <div class="card hover shadow-lg border-0">
+                <div class="card-header" style="background:#24527A;">
+                     <h3 style="color:#ffff";>Dato propios</h3> 
+                </div>
+                <div class="card-body text-left">
+                <form control="" action="{% url 'persona.html'  %}" method="post" class="form-group" enctype="multipart/form-data">
+                        <!--Token de seguridad-->
+                        {% csrf_token %}
+
+                    {% for group in request.user.groups.all %}
+                    {% if group.name == 'Empresas' %}
+                    <!-- Form de Empresas -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text" max-lengh="150" class="form-control" id="nombre" name="nombre" placeholder="{{user.first_name}}"><br>
+                            <input type="text" class="form-control" id="nombre" name="cuit" placeholder="Cuit"><br>
+                            <input type="email" class="form-control" id="nombre" name="email" disabled placeholder="{{user.username}}"><br>
+                            <input type="text" class="form-control" id="nombre" name="telefono" placeholder="Telefono"><br>
+                            <input type="text" class="form-control" id="nombre" name="direccion" placeholder="Direcció"><br>
+                            <input type="text" class="form-control" id="nombre" name="localidad" placeholder="Localidad"><br>
+                            <input type="text" class="form-control" id="nombre" name="provincia" placeholder="Provincia"><br>
+                            <input type="text" class="form-control" id="nombre" name="pais" placeholder="País"><br>
+                        </div>
+                        <div class="col-6 col-md-4 text-center" style="">
+                            <div class="bg-transparent" style="border: none;  padding: 20px;">
+                                <br><br>
+                                <img src="{% static 'seapp/img/logo.png'%}" class="card-img-center" alt="..." style="border-radius: 08px 60px 08px 08px; width: 16rem; height: 18rem;">
+                              </div>
+                            <input type="image" class="form-control" id="nombre" name="image"><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <div class='d-flex justify-content-end'>
+                        <button type="submit" id="btnCancelar" class="btn btn-primary rounded-0 py-2 px-4" style="background: #5DACBD; border: none;">Cancelar</button>
+                        &nbsp;
+                        <button type="submit" id="btnGuardar" class="btn btn-primary rounded-0 py-2 px-4" style="background: #24527A; border: none;">Guardar</button>
+                    </div>
+                </div>
+                {% elif group.name == 'Candidatos'%}
+                <!-- Form de persona-->
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" max-lengh="150" class="form-control" id="nombre" name="nombre" disabled placeholder="{{persona.nombre}}"><br>
+                        <input type="text" class="form-control" id="nombre" name="apellido" disabled placeholder="{{persona.last_name}}"><br>
+                        <input type="integrity" class="form-control" id="nombre" name="dni" placeholder="Dni"><br>
+                        <input type="email" class="form-control" id="nombre" name="email" placeholder="email" value="{{user.username}}"><br>
+                        <input type="text" class="form-control" id="nombre" name="direccion" placeholder="Dirección"><br>
+                        <input type="date" class="form-control" id="nombre" name="fecha_nacimiento" placeholder="Fecha de nacimiento"><br>
+                        <select class="form-select form-select-md" aria-label="Small select example" name="sexo">
+                            <option selected disabled>Sexo</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Femenino</option>
+                            <option value="3">Otro</option>
+                          </select><br>
+                          <input type="text" class="form-control" id="nombre" name="telefono" placeholder="Telefono"><br>
+                        <input type="text" class="form-control" id="nombre" name="localidad" placeholder="Localidad"><br>
+                        <input type="text" class="form-control" id="nombre" name="provincia" placeholder="Provincia"><br>
+                        <input type="text" class="form-control" id="nombre" name="pais" placeholder="País"><br>
+                    </div>
+                    <div class="col-6 col-md-4 text-center" style="">
+                        <div class="bg-transparent" style="border: none;  padding: 20px;">
+                            <br><br>
+                            <img src="{% static 'seapp/img/logo.png'%}" class="card-img-center" alt="..." style="border-radius: 08px 60px 08px 08px; width: 16rem; height: 18rem;">
+                          </div>
+                        <input class="form-control" type="image" id="nombre" alt="submit" name="image" placeholder="Foto perfil" encry><br>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <div class='d-flex justify-content-end'>
+                    <button type="submit" id="btnCancelar" class="btn btn-primary rounded-0 py-2 px-4" style="background: #5DACBD; border: none;">Cancelar</button>
+                    &nbsp;
+                    <button type="submit" id="btnGuardar" class="btn btn-primary rounded-0 py-2 px-4" style="background: #24527A; border: none;">Guardar</button>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+<!--Imprimo Mensaje
+{{ messages }}
+<table id="persona">
+</table>-->
+
+<script src="{% static 'seapp\js/bootstrap.bundle.min.js'%}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="{% static 'seapp\js/bootstrap.min.js'%}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'seapp\js/persona.js' %}" ></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+{% endblock  %}
+    
+
+<!--
+<div class="mb-3">
+    <div class="row h-100 align-items-center">
+      <!-- Page Content --
+    <div class="card-body">
+        <div class="card hover shadow-lg border-0">
+            <div class="card-header" style="background:#24527A;">
+                <h3 style="color:#ffff;">Datos propios</h3>
+            </div>
+            <div class="card-body text-left" style="font-size: 11px;">
+                <form control="" action="" method="post" class="form-group">
+
+                    <!--Token de seguridad--
+                    {% csrf_token %}
+                    
+                    {% for group in request.user.groups.all %}
+                    {% if group.name == "Empresas" %}
+                       {{ form2 | crispy }} 
+
+                    {% elif group.name == "Candidatos" %}
+                        {{ form | crispy }}
+
+                    {% endif %}
+                    {% endfor %}
+                         
+                        
+                    <div class="d-grid gap-2 col-6 mx-auto text-end">
+                        
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="card-footer text-body-secondary">
+                <button type="submit" class="link-offset-2 link-underline link-underline-opacity-0 float-end" style="color:#24527A;">Guardar</button>
+            </div>
+        </div>                   
+        </div>
+    </div>  
+    </div>
+</div>-->
